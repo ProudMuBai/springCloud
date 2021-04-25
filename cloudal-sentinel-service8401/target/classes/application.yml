@@ -1,0 +1,36 @@
+server:
+  port: 8401
+
+
+spring:
+  application:
+    name: cloudal-sentinel-service
+  cloud:
+    nacos:
+      discovery:
+      #nacos服务箣竹中心地址
+        server-addr: 192.168.20.120:8848
+    sentinel:
+      transport:
+        #配置sentinel dashboard地址
+        dashboard: 192.168.20.120:8080
+        #默认8719端口，假如被占用会自动从8719开始一次+1扫描，直至找到未被占用的端口
+        prot: 8719
+
+      #sentinel 持久化配置
+      datasource:
+        ds1:
+          nacos:
+            server-add: 192.168.20.120:8848
+            dataId: cloudal-sentinel-service
+            groupId: DEFAULT_GROUP
+            data-type: json
+            rule-type: flow
+
+
+
+management:
+  endpoint:
+    web:
+      exposure:
+        include: '*'

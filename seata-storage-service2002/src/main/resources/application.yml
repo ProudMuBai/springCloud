@@ -1,0 +1,56 @@
+server:
+  port: 2002
+
+
+
+
+spring:
+  application:
+    name: seata-storage-service
+  cloud:
+    alibaba:
+      seata:
+        tx-service-group: my_seata
+        config:
+          file:
+            name: file.conf
+
+
+
+    nacos:
+      discovery:
+        server-addr: 192.168.20.126:2002
+
+
+
+
+  #    config: # 配置中心相关
+  #      type: nacos
+  #      nacos:
+  #        username: nacos
+  #        password: nacos
+  #        server-addr: 192.168.20.126:2002
+  #        group: SEATA_GROUP
+  #        namespace: 98a2d0bf-17e9-4655-a7f3-b89f8d8afbeb
+
+
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://192.168.20.126:3306/seata_storage?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=UTC&rewriteBatchedStatements=true&allowPublicKeyRetrieval=true
+    username: root
+    password: rootPswd
+
+
+feign:
+  hystrix:
+    enabled: false
+
+
+logging:
+  level:
+    io:
+      seata: info
+# mybatis配置
+mybatis:
+  mapperLocations: classpath:mapper/*.xml

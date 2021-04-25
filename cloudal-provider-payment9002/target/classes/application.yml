@@ -1,0 +1,19 @@
+server:
+  port: 9002
+
+
+spring:
+  application:
+    name: nacos-payment-provider
+
+  cloud:
+    nacos:
+      discovery:
+        #server-addr: 192.168.20.126:8848    #配置nacos地址
+        server-addr: 192.168.20.126:2000      #配置nacos集群的nginx转发端口
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'

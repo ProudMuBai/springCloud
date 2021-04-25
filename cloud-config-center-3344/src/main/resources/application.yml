@@ -1,0 +1,42 @@
+server:
+  port: 3344
+
+spring:
+  application:
+    name: cloud-config-center #注册进eureka服务器的微服务名
+  cloud:
+    config:
+      server:
+        git:
+          #uri:  https://github.com/ProudMuBai/springcloud-config.git #GitHup上面的git仓库地址
+          uri: https://gitee.com/proudmubai/springcloud.git
+          force-pull: true
+        #搜索目录
+          search-paths:
+            springcloud-config
+          lable:  master
+        #lable: main
+
+  #rabbitmq服务器相关配置
+  rabbitmq:
+    host: 192.168.20.120
+    port: 5672
+    username: admin
+    password: admin
+
+#rabbitmq先关配置，暴露bus刷新配置的端点
+management:
+  endpoints:
+    web:
+      exposure:
+        include: 'busrefresh'
+
+eureka:
+  client:
+    service-url:
+      defaultZone:  http://localhost:7001/eureka
+
+
+
+
+
